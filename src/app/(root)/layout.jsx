@@ -1,5 +1,6 @@
 import React from 'react'
 import { onBoardUser } from '@/module/auth/actions';
+import Navbar from '@/module/home/components/Navbar';
 const Layout = async({children}) => {
   
     await onBoardUser();
@@ -8,7 +9,7 @@ const Layout = async({children}) => {
 
 
     <div>
-        <nav></nav>
+        <Navbar/>
         <div>
             {children}
         </div>

@@ -3,11 +3,10 @@ import { SignIn } from '@clerk/nextjs'
 
 const SignInPage = () => {
   return (
-    <div className='flex '>
-      <section>
+    
+      <section className='flex absolute top-18 left-110'>
         <SignIn/>
       </section>
-    </div>
   )
 }
 

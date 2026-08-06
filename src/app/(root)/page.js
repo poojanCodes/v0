@@ -7,18 +7,11 @@ import { UserButton } from '@clerk/nextjs'
 const page = async () => {
 
 
-  const { userId } = await auth();
-
-  if (!userId) {
-    redirect('/sign-up')
-  }
+  
 
   return (
-    <div>
-      <Button>
-        Welcome Authenticated user
-      </Button>
-      <UserButton />
+    <div className='flex justify-center'>
+
     </div>
   )
 }
