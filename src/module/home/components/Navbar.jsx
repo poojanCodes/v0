@@ -19,7 +19,7 @@ const Navbar = () => {
                 </Link>
 
                 <Show when='signed-out'>
-                    <div className='flex gap-2'>
+                    <div className='flex gap-3 absolute right-55'>
                         <SignInButton forceRedirectUrl='/sign-in'>
                             <Button variant='outline' size='sm'>
                                 Sign In
