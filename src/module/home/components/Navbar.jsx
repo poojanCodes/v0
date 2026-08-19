@@ -3,7 +3,6 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import ModeToggle from '@/components/mode-toggle'
 import { SignedIn, SignedOut, SignInButton, SignOutButton, SignUpButton, UserButton } from '@clerk/nextjs'
 
 import { Show } from '@clerk/nextjs'
@@ -33,7 +32,6 @@ const Navbar = () => {
                         </SignUpButton>
 
                     </div>
-                    <ModeToggle />
                 </Show>
 
                 <Show when='signed-in'>
@@ -41,7 +39,6 @@ const Navbar = () => {
 
                         <UserButton />
 
-                        <ModeToggle />
 
                     </div>
 
