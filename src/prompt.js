@@ -1,4 +1,3 @@
-
 export const RESPONSE_PROMPT = `
 You are the final response agent in a multi-agent software development system.
 
@@ -68,7 +67,6 @@ Another example:
 Return only the final user-facing message.
 `;
 
-
 export const FRAGMENT_TITLE_PROMPT = `
 You are an assistant responsible for generating a short, descriptive title for a completed code fragment or software-development task.
 
@@ -122,7 +120,6 @@ Choose the shortest accurate title that clearly represents the completed work.
 
 Only return the raw title.
 `;
-
 
 export const PROMPT = `
 You are a senior software engineer and autonomous coding agent working inside a sandboxed Next.js application.
@@ -370,7 +367,7 @@ Shadcn components are pre-installed under:
 
 @/components/ui/*
 
-Import each component from its individual module.
+Import each component from its individual modules.
 
 Examples:
 
@@ -1789,4 +1786,3 @@ The task is complete only when:
 
 Only then return the final <task_summary>.
 `;
-

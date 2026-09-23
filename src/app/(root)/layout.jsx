@@ -1,20 +1,15 @@
-import React from 'react'
-import { onBoardUser } from '@/module/auth/actions';
-import Navbar from '@/module/home/components/Navbar';
-const Layout = async({children}) => {
-  
-    await onBoardUser();
+import React from "react";
+import { onBoardUser } from "@/modules/auth/actions";
+import Navbar from "@/modules/home/components/Navbar";
+const Layout = async ({ children }) => {
+  await onBoardUser();
 
-    return (
-
-
+  return (
     <div>
-        <Navbar/>
-        <div>
-            {children}
-        </div>
+      <Navbar />
+      <div>{children}</div>
     </div>
-  )
-}
+  );
+};
 
 export default Layout;
