@@ -3,10 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { SignedIn, SignedOut, SignInButton, SignOutButton, SignUpButton, UserButton } from '@clerk/nextjs'
-
-import { Show } from '@clerk/nextjs'
-
+import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 
 const Navbar = () => {
@@ -18,32 +15,26 @@ const Navbar = () => {
                 </Link>
 
                 <Show when='signed-out'>
-                    <div className='flex gap-3 absolute right-55'>
-                        <SignInButton forceRedirectUrl='/sign-in'>
+                    <div className='flex gap-3'>
+                        <SignInButton forceRedirectUrl='/'>
                             <Button variant='outline' size='sm'>
                                 Sign In
                             </Button>
                         </SignInButton>
 
-                        <SignUpButton forceRedirectUrl='/sign-up'>
+                        <SignUpButton forceRedirectUrl='/'>
                             <Button size={'sm'}>
                                 Sign Up
                             </Button>
                         </SignUpButton>
-
                     </div>
                 </Show>
 
                 <Show when='signed-in'>
                     <div className='flex gap-9'>
-
                         <UserButton />
-
-
                     </div>
-
                 </Show>
-
             </div>
         </nav>
     )

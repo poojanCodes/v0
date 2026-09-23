@@ -53,3 +53,31 @@ export const onBoardUser = async () => {
         console.log(error);
     }
 }
+
+export const getCurrentUser = async () => {
+    try {
+        const user = await currentUser();
+        if (!user) return null;
+
+        const dbUser = await db.user.findUnique({
+            where: { clerkId: user.id }
+        });
+
+        if (dbUser) return dbUser;
+
+        const { id, firstName, lastName, imageUrl, emailAddresses } = user;
+        return await db.user.create({
+            data: {
+                clerkId: id,
+                name: firstName && lastName
+                    ? `${firstName} ${lastName}`
+                    : firstName || lastName || null,
+                image: imageUrl || null,
+                email: emailAddresses[0]?.emailAddress || ''
+            }
+        });
+    } catch (error) {
+        console.error("Error in getCurrentUser:", error);
+        return null;
+    }
+}
