@@ -11,7 +11,7 @@ import z from "zod";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
 import { lastAssistantTextMessageContent } from "./utils";
 import db from "@/lib/db";
-import { MessageRole, MessageType } from "@prisma/client";
+import { MessageRole, MessageType } from "@/generated/prisma";
 
 export const codeAgentFunction = inngest.createFunction(
   { id: "code-agent" },

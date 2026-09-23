@@ -1,6 +1,6 @@
 "use server";
 
-import { MessageRole, MessageType } from "@prisma/client";
+import { MessageRole, MessageType } from "@/generated/prisma";
 import db from "@/lib/db";
 import { inngest } from "@/inngest/client";
 import { getCurrentUser } from "@/modules/auth/actions";
@@ -20,21 +20,13 @@ export const createMessages = async (value, projectId) => {
 
   if (!project) throw new Error("Project not found");
 
-
   try {
     await consumeCredits();
   } catch (error) {
-      if(error instanceof Error) {
-      throw new Error({
-      code:"BAD_REQUEST",
-        message:"Something went wrong"
-      })
-    }
-    else{
-      throw new Error({
-        code:"TOO_MANY_REQUESTS",
-        message:"Too many requests"
-      })
+    if (error instanceof Error) {
+      throw new Error("Something went wrong");
+    } else {
+      throw new Error("Too many requests");
     }
   }
 
@@ -73,16 +65,16 @@ export const getMessages = async (projectId) => {
   if (!project) throw new Error("Project not found or unauthorized");
 
   const messages = await db.message.findMany({
-    where:{
-        projectId
+    where: {
+      projectId,
     },
-    orderBy:{
-        updatedAt:"asc"
+    orderBy: {
+      updatedAt: "asc",
     },
-    include:{
-        fragments:true
-    }
-  })
+    include: {
+      fragments: true,
+    },
+  });
 
   return messages;
 };

@@ -12,8 +12,8 @@ import z from "zod";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Form, FormField } from "@/components/ui/form";
-
-// import { onInvoke } from "../actions";
+import { useCreateProject } from "@/modules/projects/hooks/project";
+import { Spinner } from "@/components/ui/spinner";
 
 const formSchema = z.object({
     content: z
@@ -76,6 +76,7 @@ const PROJECT_TEMPLATES = [
 const ProjectsForm = () => {
     const [isFocused, setIsFocused] = useState(false);
     const router = useRouter();
+    const { mutateAsync, isPending } = useCreateProject();
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -90,7 +91,9 @@ const ProjectsForm = () => {
 
     const onSubmit = async (values) => {
         try {
-            console.log(values)
+            const project = await mutateAsync(values.content);
+            toast.success("Project created successfully");
+            router.push(`/projects/${project.id}`);
         } catch (error) {
             toast.error(error.message || "Failed to create project");
         }
@@ -149,7 +152,7 @@ const ProjectsForm = () => {
                         render={({ field }) => (
                             <TextAreaAutosize
                                 {...field}
-                                // disabled={isPending}
+                                disabled={isPending}
                                 placeholder="Describe what you want to create..."
                                 onFocus={() => setIsFocused(true)}
                                 onBlur={() => setIsFocused(false)}
@@ -157,7 +160,7 @@ const ProjectsForm = () => {
                                 maxRows={8}
                                 className={cn(
                                     "pt-4 resize-none border-none w-full outline-none bg-transparent",
-                                    //   isPending && "opacity-50"
+                                    isPending && "opacity-50"
                                 )}
                                 onKeyDown={(e) => {
                                     if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
@@ -178,13 +181,12 @@ const ProjectsForm = () => {
                         </div>
                         <Button
                             className={cn("size-8 rounded-full",
+                                isPending && "bg-muted-foreground border"
                             )}
-                            // disabled={isButtonDisabled}
+                            disabled={isPending}
                             type="submit"
                         >
-                            <ArrowUpIcon></ArrowUpIcon>
-
-
+                            {isPending ? <Spinner /> : <ArrowUpIcon className="size-4" />}
                         </Button>
                     </div>
                 </form>
