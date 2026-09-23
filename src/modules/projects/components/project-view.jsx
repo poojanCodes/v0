@@ -65,11 +65,9 @@ const ProjectView = ({ projectId }) => {
               </TabsList>
 
               <div className="ml-auto flex items-center gap-x-2">
-                <Button asChild size={"sm"}>
-                  <Link href={"/pricing"}>
-                    <CrownIcon className="size-4 mr-2" />
-                    Upgrade
-                  </Link>
+                <Button size={"sm"} render={<Link href={"/pricing"} className="flex items-center gap-x-2" />}>
+                  <CrownIcon className="size-4 mr-2" />
+                  Upgrade
                 </Button>
               </div>
             </div>

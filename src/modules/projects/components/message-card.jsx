@@ -1,7 +1,7 @@
 import { Response } from "@/components/ai-elements/response";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { MessageRole, MessageType } from "@/generated/prisma";
+import { MessageRole, MessageType } from "@/generated/prisma/enums";
 import { format } from "date-fns";
 import { ChevronRightIcon, Code2Icon } from "lucide-react";
 import Image from "next/image";

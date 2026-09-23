@@ -11,12 +11,10 @@ import z from "zod";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
 import { lastAssistantTextMessageContent } from "./utils";
 import db from "@/lib/db";
-import { MessageRole, MessageType } from "@/generated/prisma";
+import { MessageRole, MessageType } from "@/generated/prisma/enums";
 
 export const codeAgentFunction = inngest.createFunction(
-  { id: "code-agent" },
-  { event: "code-agent/run" },
-
+  { id: "code-agent", triggers: [{ event: "code-agent/run" }] },
   async ({ event, step }) => {
     // Step-1
     const sandboxId = await step.run("get-sandbox-id", async () => {

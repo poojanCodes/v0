@@ -19,7 +19,7 @@ export const Hint = ({
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipTrigger render={children} />
         <TooltipContent side={side} align={align} sideOffset={sideOffset}>
           <p className="font-semibold text-xs">{contentText}</p>
         </TooltipContent>

@@ -3,7 +3,7 @@ import {
   prefetchMessages,
 } from "@/modules/messages/hooks/message";
 import React, { useEffect, useRef } from "react";
-import { MessageRole } from "@/generated/prisma";
+import { MessageRole } from "@/generated/prisma/enums";
 import { useQueryClient } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui/spinner";
 import MessageCard from "./message-card";

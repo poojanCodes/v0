@@ -1,6 +1,6 @@
 "use server";
 
-import { MessageRole, MessageType } from "@/generated/prisma";
+import { MessageRole, MessageType } from "@/generated/prisma/enums";
 import db from "@/lib/db";
 import { inngest } from "@/inngest/client";
 import { getCurrentUser } from "@/modules/auth/actions";
@@ -39,13 +39,17 @@ export const createMessages = async (value, projectId) => {
     },
   });
 
-  await inngest.send({
-    name: "code-agent/run",
-    data: {
-      value: value,
-      projectId: projectId,
-    },
-  });
+  try {
+    await inngest.send({
+      name: "code-agent/run",
+      data: {
+        value: value,
+        projectId: projectId,
+      },
+    });
+  } catch (error) {
+    console.warn("Inngest event send warning (dev server may be offline):", error);
+  }
 
   return newMessage;
 };

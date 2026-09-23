@@ -46,10 +46,8 @@ export const Usage = () => {
           </p>
         </div>
         {!hasProAccess && (
-          <Button asChild size={"sm"} variant={"default"} className={"ml-auto"}>
-            <Link href={"/pricing"}>
-              <CrownIcon /> Upgrade
-            </Link>
+          <Button size={"sm"} variant={"default"} className={"ml-auto"} render={<Link href={"/pricing"} className="flex items-center gap-1" />}>
+            <CrownIcon /> Upgrade
           </Button>
         )}
       </div>

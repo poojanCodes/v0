@@ -4,7 +4,7 @@ import { inngest } from "@/inngest/client";
 import db from "@/lib/db";
 import { consumeCredits } from "@/lib/usage";
 import { getCurrentUser } from "@/modules/auth/actions";
-import { MessageRole, MessageType } from "@/generated/prisma";
+import { MessageRole, MessageType } from "@/generated/prisma/enums";
 import { generateSlug } from "random-word-slugs";
 
 export const createProject = async (value) => {
@@ -36,13 +36,17 @@ export const createProject = async (value) => {
     },
   });
 
-  await inngest.send({
-    name: "code-agent/run",
-    data: {
-      value: value,
-      projectId: newProject.id,
-    },
-  });
+  try {
+    await inngest.send({
+      name: "code-agent/run",
+      data: {
+        value: value,
+        projectId: newProject.id,
+      },
+    });
+  } catch (error) {
+    console.warn("Inngest event send warning (dev server may be offline):", error);
+  }
 
   return newProject;
 };

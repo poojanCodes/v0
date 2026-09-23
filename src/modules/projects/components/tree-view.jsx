@@ -67,12 +67,10 @@ const Tree = ({ item, selectedValue, onSelect, parentPath }) => {
         className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
         defaultOpen
       >
-        <CollapsibleTrigger asChild>
-          <SidebarMenuButton>
-            <ChevronRightIcon className="transition-transform" />
-            <FolderIcon />
-            <span className="truncate">{name}</span>
-          </SidebarMenuButton>
+        <CollapsibleTrigger render={<SidebarMenuButton />}>
+          <ChevronRightIcon className="transition-transform" />
+          <FolderIcon />
+          <span className="truncate">{name}</span>
         </CollapsibleTrigger>
         <SidebarMenuSub>
           {items.map((item, index) => (
